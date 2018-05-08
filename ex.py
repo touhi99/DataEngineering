@@ -28,13 +28,10 @@ for i,j in zip(range(len(df_x.index)), range(len(df_y.index))):
 	if x_axis_bool == False and y_axis_bool==False:
 		break
 	if x_axis_bool:
-		plt.pause(0.005)
 		while df_x.x[i] == df_x_prev[0]:
 			i+=1
 			continue
 
-		'''Condition to check axis '''
-		#while len(x_list) > 0 and df_x.x[i] < df_x_prev[0] and 
 		''' For first point case, where X-axis value is higher'''
 		if df_x.x[i] > df_x_prev[0]:
 			df_x_prev[0] = df_x.x[i]
@@ -62,16 +59,21 @@ for i,j in zip(range(len(df_x.index)), range(len(df_y.index))):
 			df_y_prev[0] = df_y.x[j]
 			df_y_prev[1] = df_y.y[j]
 			y_list.append((df_y.x[j], df_y.y[j]))
+
+	'''
 	if df_y.y[j] == x_list[-1][1]:
 		y_axis_bool=False
 	if df_x.x[i] == y_list[-1][0]:
 		x_axis_bool=False
-
+	'''
+	if x_list[-1][0] == y_list[-1][0] and x_list[-1][1] == y_list[-1][1]:
+		break
+	print(x_list)
+	print(y_list)
+	plt.pause(0.005)
 	plt.scatter(df_x.x[i], df_x.y[i], color='r')
 	plt.scatter(df_y.x[j], df_y.y[j], color='g')
 
-print(x_list)
-print(y_list)
 c_list = list(set(x_list).union(y_list))
 print(c_list)
 
