@@ -18,7 +18,6 @@ y_list = []
 fig = plt.figure()
 plt.scatter(df.x,df.y)
 plt.grid()
-
 '''Random minimized no. to check the first element'''
 df_x_prev = [-5555,-5555]
 df_y_prev = [-5555,-5555]
@@ -44,11 +43,12 @@ for x_index,y_index in zip(range(len(df_x.index)), range(len(df_y.index))):
 		if df_x.x[i] == y_list[-1][0] and df_x.y[i] == y_list[-1][1]:
 			print("Y")
 			x_axis_bool=False
+
 	
 	'''FOR X-AXIS'''
 	if x_axis_bool:
 		''' While Same X-axis has multiple same values, keep skipping'''
-		while df_x.x[i] == df_x_prev[0]:
+		while df_x.y[i] == df_x_prev[1]:
 			i+=1
 
 		''' For first point case, where X-axis value is higher'''
@@ -65,7 +65,7 @@ for x_index,y_index in zip(range(len(df_x.index)), range(len(df_y.index))):
 	
 	'''FOR Y-AXIS'''
 	if y_axis_bool:
-		while df_y.y[j] == df_y_prev[1]:
+		while df_y.x[j] == df_y_prev[0]:
 			j+=1
 
 		if df_y.y[j] > df_y_prev[1]:
@@ -78,14 +78,17 @@ for x_index,y_index in zip(range(len(df_x.index)), range(len(df_y.index))):
 			df_y_prev[1] = df_y.y[j]
 			y_list.append((df_y.x[j], df_y.y[j]))
 
+	
 	print(str(i)+" "+str(j))
 	print(str(df_x.x[i])+","+str(df_x.y[i]))
 	print(str(df_y.x[j])+","+str(df_y.y[j]))
-
-	plt.pause(0.005)
+	print(x_list)
+	print(y_list)
+	
+	plt.pause(0.05)
 	plt.scatter(df_x.x[i], df_x.y[i], color='r')
 	plt.scatter(df_y.x[j], df_y.y[j], color='g')
-	
+
 	if x_axis_bool:
 		i+=1
 	if y_axis_bool:
