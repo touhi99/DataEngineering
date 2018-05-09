@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-df = pd.read_csv("test.csv", sep=";", header=None)
+df = pd.read_csv("demo.csv", sep=";", header=None)
 df.columns = ['x','y']
 
 '''Sort dataframe and store in 2 more based on X and Y column'''
@@ -38,10 +38,10 @@ for x_index,y_index in zip(range(len(df_x.index)), range(len(df_y.index))):
 	'''check condition for stopping axis'''
 	if len(x_list)!=0 or len(y_list)!=0:
 		if df_y.y[j] == x_list[-1][1] and df_y.x[j] == x_list[-1][0]:
-			print("X")
+			#print("X")
 			y_axis_bool=False
 		if df_x.x[i] == y_list[-1][0] and df_x.y[i] == y_list[-1][1]:
-			print("Y")
+			#print("Y")
 			x_axis_bool=False
 
 	
@@ -81,14 +81,15 @@ for x_index,y_index in zip(range(len(df_x.index)), range(len(df_y.index))):
 			y_list.append((df_y.x[j], df_y.y[j]))
 		plt.scatter(df_y.x[j], df_y.y[j], color='g')
 
-	
+	'''
 	print(str(i)+" "+str(j))
 	print(str(df_x.x[i])+","+str(df_x.y[i]))
 	print(str(df_y.x[j])+","+str(df_y.y[j]))
 	print(x_list)
 	print(y_list)
+	'''
 	
-	plt.pause(0.99)
+	plt.pause(0.05)
 
 	if x_axis_bool:
 		i+=1
@@ -96,8 +97,8 @@ for x_index,y_index in zip(range(len(df_x.index)), range(len(df_y.index))):
 		j+=1
 
 c_list = list(set(x_list).union(y_list))
-print(x_list)
-print(y_list)
+#print(x_list)
+#print(y_list)
 print(c_list)
 
 
