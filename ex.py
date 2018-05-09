@@ -48,8 +48,8 @@ for x_index,y_index in zip(range(len(df_x.index)), range(len(df_y.index))):
 	'''FOR X-AXIS'''
 	if x_axis_bool:
 		''' While Same X-axis has multiple same values, keep skipping'''
-		while df_x.y[i] == df_x_prev[1]:
-			i+=1
+		#while df_x.y[i] == df_x_prev[1]:
+		#	i+=1
 
 		''' For first point case, where X-axis value is higher'''
 		if df_x.x[i] > df_x_prev[0]:
@@ -62,11 +62,13 @@ for x_index,y_index in zip(range(len(df_x.index)), range(len(df_y.index))):
 			df_x_prev[0] = df_x.x[i]
 			df_x_prev[1] = df_x.y[i]
 			x_list.append((df_x.x[i], df_x.y[i]))
+		plt.scatter(df_x.x[i], df_x.y[i], color='r')
+
 	
 	'''FOR Y-AXIS'''
 	if y_axis_bool:
-		while df_y.x[j] == df_y_prev[0]:
-			j+=1
+		#while df_y.x[j] == df_y_prev[0]:
+		#	j+=1
 
 		if df_y.y[j] > df_y_prev[1]:
 			df_y_prev[0] = df_y.x[j]
@@ -77,6 +79,7 @@ for x_index,y_index in zip(range(len(df_x.index)), range(len(df_y.index))):
 			df_y_prev[0] = df_y.x[j]
 			df_y_prev[1] = df_y.y[j]
 			y_list.append((df_y.x[j], df_y.y[j]))
+		plt.scatter(df_y.x[j], df_y.y[j], color='g')
 
 	
 	print(str(i)+" "+str(j))
@@ -85,9 +88,7 @@ for x_index,y_index in zip(range(len(df_x.index)), range(len(df_y.index))):
 	print(x_list)
 	print(y_list)
 	
-	plt.pause(0.05)
-	plt.scatter(df_x.x[i], df_x.y[i], color='r')
-	plt.scatter(df_y.x[j], df_y.y[j], color='g')
+	plt.pause(0.99)
 
 	if x_axis_bool:
 		i+=1
