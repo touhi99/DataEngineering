@@ -18,7 +18,7 @@ y_list = []
 fig = plt.figure()
 plt.scatter(df.x,df.y)
 plt.grid()
-'''Random minimized no. to check the first element'''
+
 df_x_prev = [-5555,-5555]
 df_y_prev = [-5555,-5555]
 
