@@ -11,13 +11,13 @@ class CoraStructure():
 
 class ParseXML():
 	def __init__(self):
+		self.Cora = []
 		self.parse()
 
 	def parse(self):
 		tree = etree.parse('cora-all-id.xml')
 		root = tree.getroot()
 
-		self.Cora = []
 		self.publication_id = ''
 		self.author = {}
 		self.title = []
@@ -31,7 +31,7 @@ class ParseXML():
 				if subchild.tag=="title":
 					self.title.append(subchild.text)
 				for subsubchild in subchild:
-					print(subsubchild.get("id"))
+					#print(subsubchild.get("id"))
 					self.venue[subsubchild.get("id")]={}
 					for subsubsubchild in subsubchild:
 						self.venue[subsubchild.get("id")]['pubid'] = subsubchild.get("pubid")
@@ -42,11 +42,24 @@ class ParseXML():
 			self.author = {}
 			self.title = []
 			self.venue = {}
+		'''
 		for item in self.Cora:
 			print(item.publication_id)
 			print(item.author)
 			print(item.title)
 			print(item.venue)
+		'''
 
+class EntityResolution():
+	def __init__(self):
+		self.xml = ParseXML()
+		self.ER_alg(self.xml.Cora)
+
+	def ER_alg(self, cora):
+		for item in cora:
+			print(item.publication_id)
+			print(item.author)
+			print(item.title)
+			print(item.venue)
 if __name__ == "__main__":
-	ParseXML()
+	EntityResolution()
